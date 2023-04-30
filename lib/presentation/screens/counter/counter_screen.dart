@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_button.dart';
+
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
 
@@ -15,6 +17,16 @@ class _CounterScreenState extends State<CounterScreen> {
       appBar: AppBar(
         title: const Text('Counter'),
         backgroundColor: Colors.deepPurple,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                counter = 0;
+              });
+            },
+            icon: const Icon(Icons.refresh_outlined),
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -29,13 +41,26 @@ class _CounterScreenState extends State<CounterScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              counter++;
-            });
-          },
-          child: const Icon(Icons.plus_one)),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: const [
+          CustomButtom(
+            icon: Icons.refresh_outlined,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          CustomButtom(
+            icon: Icons.exposure_minus_1_outlined,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          CustomButtom(
+            icon: Icons.plus_one_outlined,
+          ),
+        ],
+      ),
     );
   }
 }
