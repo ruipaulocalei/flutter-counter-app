@@ -15,7 +15,13 @@ class _CounterScreenState extends State<CounterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter'),
+        title: const Text(
+          'Counter',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(
@@ -24,7 +30,10 @@ class _CounterScreenState extends State<CounterScreen> {
                 counter = 0;
               });
             },
-            icon: const Icon(Icons.refresh_outlined),
+            icon: const Icon(
+              Icons.refresh_outlined,
+              color: Colors.white,
+            ),
           )
         ],
       ),
@@ -43,21 +52,34 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: const [
+        children: [
           CustomButtom(
             icon: Icons.refresh_outlined,
+            onPressed: () {
+              counter = 0;
+              setState(() {});
+            },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           CustomButtom(
             icon: Icons.exposure_minus_1_outlined,
+            onPressed: () {
+              if (counter == 0) return;
+              counter--;
+              setState(() {});
+            },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           CustomButtom(
             icon: Icons.plus_one_outlined,
+            onPressed: () {
+              counter++;
+              setState(() {});
+            },
           ),
         ],
       ),
